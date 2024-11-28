@@ -15,7 +15,6 @@ public class PedidoDto {
 	private Date dataCriacao;
 	
 	public PedidoDto() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public PedidoDto(int idPedido, Double preco, int idStatus, int idCliente, int idPagamento, int idStatusPagamento, int duracaoTotalPreparo, Date dataCriacao) {
