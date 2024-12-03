@@ -45,20 +45,20 @@ public class PedidoController {
 		pedidoCompletoDto.getPedidoDto().setDuracaoTotalPreparo(duracaoTotal);
 		PedidoDto pedidoDto = pedidoService.salvarPedido(pedidoCompletoDto.getPedidoDto());
 		pedidoProdutoService.salvarPedidoProduto(pedidoDto.getIdPedido(), pedidoCompletoDto.getPedidoProdutoDtos());
-		
+		pedidoService.registrarSolicitacaoPagamento(pedidoDto);
 		return new ResponseEntity<>(pedidoDto, HttpStatus.CREATED);
 	}
 	
-	@PostMapping(path="/inicia-solicitacao-pagamento")
-	@Operation(summary = "Inicia uma solicitação de pagamento na API Pagamentos")
-	String iniciarSolicitacaoPagamento() {
-		return null;
-	}
+//	@PostMapping(path="/inicia-solicitacao-pagamento")
+//	@Operation(summary = "Inicia uma solicitação de pagamento na API Pagamentos")
+//	ResponseEntity<?> iniciarSolicitacaoPagamento(@RequestBody PagamentoApiDto pagamentoApiDto) {
+//		return new ResponseEntity<>(pedidoService.registrarSolicitacaoPagamento(pagamentoApiDto), HttpStatus.CREATED);
+//	}
 	
 	@GetMapping
 	@Operation(summary = "Retorna lista com todos os pedidos registrados.")
 	ResponseEntity<?> buscarPedidosRegistrados() {
-		List<PedidoCompletoDto> listaPedidoCompletosDto = new ArrayList<PedidoCompletoDto>(); 
+		List<PedidoCompletoDto> listaPedidoCompletosDto = new ArrayList<>(); 
 		List<PedidoDto> listaPedidosDto = pedidoService.buscarPedidos();
 		for(PedidoDto pedidoDto : listaPedidosDto) {
 			PedidoCompletoDto pedidoCompletoDto = new PedidoCompletoDto();
@@ -72,7 +72,7 @@ public class PedidoController {
 	@GetMapping(path="/buscar-pedidos-visao-cliente/{idCliente}")
 	@Operation(summary = "Retorna lista com pedidos em produção (visão cliente).")
 	ResponseEntity<?> buscarPedidosProducaoCliente(@Parameter(description = "ID do cliente", example = "1") @PathVariable int idCliente) {
-		List<PedidoCompletoDto> listaPedidoCompletosDto = new ArrayList<PedidoCompletoDto>(); 
+		List<PedidoCompletoDto> listaPedidoCompletosDto = new ArrayList<>(); 
 		List<PedidoDto> listaPedidosDto = pedidoService.buscarPedidosPorCliente(idCliente);
 		for(PedidoDto pedidoDto : listaPedidosDto) {
 			PedidoCompletoDto pedidoCompletoDto = new PedidoCompletoDto();
@@ -85,17 +85,20 @@ public class PedidoController {
 	
 	@PutMapping(path="{idPedido}/status/{idStatus}")
 	@Operation(summary = "Realiza a atualização do status do pedido.")
-	void atualizarStatusPedido(@Parameter(description = "ID do pedido.", example = "1") @PathVariable int idPedido, @Parameter(description = "ID do status do pedido (1: Pendente Pagamento, 2: Em preparo, 3: Nova Tentativa de pgto., 4:Pronto, 5: Finalizado, 6:Cancelado).", example = "1") @PathVariable int idStatus) {
+	void atualizarStatusPedido(@Parameter(description = "ID do pedido.", example = "1") @PathVariable int idPedido, @Parameter(description = "ID do status do pedido (1: Pendente Pagamento, 2: Em preparo, 4:Pronto, 5: Finalizado, 6:Cancelado).", example = "1") @PathVariable int idStatus) {
 		PedidoDto pedidoDto = new PedidoDto(idPedido, idStatus);
 		pedidoService.salvarPedido(pedidoDto);
 	}
 	
-	@PutMapping(path="{idPedido}/status-pagamento/{idStatusPagamento}")
+	@PutMapping(path="{idPedido}/{idPagamento}/status-pagamento/{idStatusPagamento}")
 	@Operation(summary = "Realiza a atualização do status do pagamento do pedido.")
-	void atualizarStatusPagamentoPedido(@Parameter(description = "ID do pedido.", example = "1") @PathVariable int idPedido, @Parameter(description = "ID do status do pgto. do pedido (0: Pendente Pagamento, 1: Aprovado, 2: Reprovado).", example = "1") @PathVariable int idStatusPagamento) {
+	void atualizarStatusPagamentoPedido(@Parameter(description = "ID do pedido.", example = "1") @PathVariable int idPedido, 
+			@Parameter(description = "ID do pagamento.", example = "1") @PathVariable int idPagamento,
+			@Parameter(description = "ID do status do pgto. do pedido (0: Pendente Pagamento, 1: Aprovado, 2: Reprovado).", example = "1") @PathVariable int idStatusPagamento) {
 		PedidoDto pedidoDto = new PedidoDto();
 		pedidoDto.setIdPedido(idPedido);
+		pedidoDto.setIdPagamento(idPagamento);
 		pedidoDto.setIdStatusPagamento(idStatusPagamento);
-		pedidoService.salvarPedido(pedidoDto);
+		pedidoService.atualizarStatusPagamentoPedido(pedidoDto);
 	}
 }

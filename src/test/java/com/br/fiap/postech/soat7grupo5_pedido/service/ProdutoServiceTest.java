@@ -1,16 +1,15 @@
-package com.br.fiap.postech.soat7grupo5_pedido.repository;
+package com.br.fiap.postech.soat7grupo5_pedido.service;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.mockito.Mock;
+import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
-class ProdutoRepositoryTest {
-
-	@Mock
-	private ProdutoRepository produtoRepository;
+@Transactional
+class ProdutoServiceTest {
 	
 	AutoCloseable openMocks;
 	
@@ -24,9 +23,9 @@ class ProdutoRepositoryTest {
 		openMocks.close();
 	}
 	
-	//@Test
-	void devePermitirBuscarProdutoPorTipo() {
+	@Test
+	void devePermitirBuscarProdutoPorId() {
 		//fail("teste não implementado.");
 	}
-	
+
 }
