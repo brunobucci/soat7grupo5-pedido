@@ -9,7 +9,7 @@ Link do vídeo detalhando o Microserviço Pedido pode ser visto <a href="https:/
 
 
 ### Diagrama Arquitetura Microserviços
-[![Diagrama Microserviços]([https://github.com/brunobucci/soat7grupo5/blob/748b37dbc07047922a87d01d20a7f184251c30b1/kubernets/diagrama/Diagrama-Infra.png](https://github.com/brunobucci/soat7grupo5-app/blob/main/documentacao/arquitetura.png?raw=true))](https://github.com/brunobucci/soat7grupo5-app/blob/main/documentacao/arquitetura.png?raw=true)
+![Diagrama Microserviços](https://github.com/brunobucci/soat7grupo5-app/blob/6eabe52ca5186a3b11219893b0fb98ab81517bd9/documentacao/arquitetura.png)
 
 
 ### Outros repositórios da fase:
