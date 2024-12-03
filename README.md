@@ -4,10 +4,10 @@
 
 ### Video
 
-Link do vídeo detalhando o Microserviço Pedido pode ser visto <a href="https://www.youtube.com/watch?v=YplkjITVdOM" target="_blank">aqui</a> <br>
+Link do vídeo detalhando o Microserviço Pedido: https://www.youtube.com/watch?v=YplkjITVdOM
 
 ### Swagger
-http://ec2-44-203-38-152.compute-1.amazonaws.com:8080/swagger-ui/index.html
+Link do Swagger do Microserviço Pedido: http://ec2-44-203-38-152.compute-1.amazonaws.com:8080/swagger-ui/index.html
 
 
 ### Diagrama Arquitetura Microserviços
