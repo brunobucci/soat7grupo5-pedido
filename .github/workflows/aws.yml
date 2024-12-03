@@ -31,7 +31,7 @@ jobs:
             ${{ runner.os }}-maven
           
       # Clonar o repositório da aplicação Pedido
-      - name: Clone pagamento Repo
+      - name: Clone Pedido Repo
         run: git clone https://github.com/brunobucci/soat7grupo5-pedido.git pedido
   
 
