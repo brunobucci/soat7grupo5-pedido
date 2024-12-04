@@ -3,9 +3,13 @@
 ## Repositório: Microserviço Pedido (MySQL)
 
 
-### Video
+### Videos
 
-Link do vídeo detalhando o Microserviço Pedido: https://www.youtube.com/watch?v=YplkjITVdOM
+Link para o video detalhando o funcionamento das aplicações (Micro-serviços):  https://youtu.be/yakGs227jBI
+
+Link para o video detalhando a arquitetura de Micro-serviços: https://youtu.be/dDpzmyWP7ak
+
+Link para o video detalhando o processo de CI/CD:  https://youtu.be/Nk5S3jUgzmg
 
 ### Swagger
 Link do Swagger do Microserviço Pedido: http://ec2-44-203-38-152.compute-1.amazonaws.com:8080/swagger-ui/index.html
